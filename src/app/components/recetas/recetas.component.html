@@ -1,0 +1,2 @@
+<h2>Todas las Recetas</h2>
+<app-receta-card *ngFor="let receta of recetas let i = index" [receta]="receta" [index]="receta.id" (recetaSelected)="verReceta($event)"></app-receta-card>

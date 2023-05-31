@@ -1,0 +1,11 @@
+<div class="card h-100 animated fadeIn fast mb-2">
+    <img [src]="receta?.urlImagen" class="card-img-top" alt="{{receta?.nombre}}">
+    <div class="card-body">
+    <h5 class="card-title">{{receta?.nombre}}</h5>
+    <p class="card-text">{{receta?.dificultad}}</p>
+    </div>
+    <div class="card-footer">
+        <small class="text-muted">{{receta?.tipo}}</small>
+    </div>
+    <button type="button" class="btn btn-outline-primary btn-block" (click)="verReceta()">Ver más</button>
+</div>
