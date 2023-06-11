@@ -1,2 +1,6 @@
-<h2>Todas las Recetas</h2>
-<app-receta-card *ngFor="let receta of recetas let i = index" [receta]="receta" [index]="receta.id" (recetaSelected)="verReceta($event)"></app-receta-card>
+<img class="img-top" style="width: 100%;">
+<h2>TODAS LAS RECETAS:</h2>
+<div class="recetas-card">
+    <app-receta-card class="receta-card" *ngFor="let receta of recetas let i = index" [receta]="receta" [index]="receta.id" (recetaSelected)="verReceta($event)"></app-receta-card>
+</div>
+<img class="img-bottom" style="width: 100%;">

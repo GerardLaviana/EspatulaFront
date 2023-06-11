@@ -1,0 +1,19 @@
+.recetas-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10%;
+    margin: 5%;
+}
+
+.receta-card{
+    max-width: 35%;
+}
+
+.img-top{
+    content: var(--url-pinchos-top);
+}
+
+.img-bottom{
+    content:var(--url-pinchos-bottom);
+}

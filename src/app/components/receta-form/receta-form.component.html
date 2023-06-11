@@ -1,0 +1,88 @@
+<div class="padre-form">
+    <form autocomplete="off" [formGroup]="form" (ngSubmit)="guardarReceta()">
+        <div class="left-form">
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Nombre de la Receta:</label>
+                <div class="col-8">
+                    <input class="form-control"
+                        type="text"
+                        placeholder="Nombre"
+                        formControlName="nombre"
+                        [class.is-invalid]="nombreNoValido"/>
+                </div>
+            </div>
+            <small *ngIf="nombreNoValido" class="form-text text-danger">El nombre debe de contener más de 0 caracteres</small>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Duración (minutos):</label>
+                <div class="col-8">
+                    <input class="form-control"
+                        type="number"
+                        min="0"
+                        step="5"
+                        placeholder="5"
+                        formControlName="duracion"
+                        />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Dificultad: </label>
+                <div class="col-8">
+                    <select class="form-control" formControlName="dificultad">
+                        <option value="Fácil">Fácil</option>
+                        <option value="Media">Media</option>
+                        <option value="Difícil">Difícil</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Tipo:</label>
+                <div class="col-8">
+                    <input class="form-control"
+                        type="text"
+                        placeholder="Cena"
+                        formControlName="tipo"
+                        />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Origen:</label>
+                <div class="col-8">
+                    <input class="form-control"
+                        type="text"
+                        placeholder="España"
+                        formControlName="origen"
+                        />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Pasos a seguir:</label>
+                <div class="col-8">
+                    <input class="form-control"
+                        type="text"
+                        placeholder="Nombre"
+                        formControlName="pasos"
+                        />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Ingredientes</label>
+                <div class="col-8">
+                    <input class="form-control"
+                        type="text"
+                        placeholder="Nombre"
+                        formControlName="cambio"
+                        />
+                </div>
+            </div>
+        </div>
+        <div class="right-form">
+        <input type="file" class="form-control" formControlName="foto" (change)="imagenSelected($event)">
+        <button (click)="subirImagen()">Subir imagen</button>
+
+        <button type="submit">CREAR RECETA</button>
+        </div>
+    </form>
+</div>
+<pre>
+    {{form.value | json}}
+</pre>

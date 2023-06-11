@@ -8,6 +8,13 @@ import { RecetaComponent } from './components/receta/receta.component';
 import { RecetasComponent } from './components/recetas/recetas.component';
 import { NavBarComponent } from './components/shared/nav-bar/nav-bar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RecetaFormComponent } from './components/receta-form/receta-form.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
+import { LoginComponent } from './components/login/login.component';
+import { RegistroComponent } from './components/registro/registro.component';
+import { interceptorProvider } from './services/interceptor.service';
+import { FooterComponent } from './components/shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -15,14 +22,21 @@ import { HttpClientModule } from '@angular/common/http';
     RecetaCardComponent,
     RecetaComponent,
     RecetasComponent,
-    NavBarComponent
+    NavBarComponent,
+    RecetaFormComponent,
+    LoginComponent,
+    RegistroComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgxCaptchaModule
   ],
-  providers: [],
+  providers: [interceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-<div class="card h-100 animated fadeIn fast mb-2">
+<!--<div class="card h-100 animated fadeIn fast mb-2">
     <img [src]="receta?.urlImagen" class="card-img-top" alt="{{receta?.nombre}}">
     <div class="card-body">
     <h5 class="card-title">{{receta?.nombre}}</h5>
@@ -7,5 +7,20 @@
     <div class="card-footer">
         <small class="text-muted">{{receta?.tipo}}</small>
     </div>
-    <button type="button" class="btn btn-outline-primary btn-block" (click)="verReceta()">Ver más</button>
+    <button type="button" class="btn btn-outline-primary btn-block" (click)="verReceta()">Ver receta</button>
+</div>-->
+<div class="receta-card">
+    <div class="receta-img">
+        <img [src]="receta?.urlImagen" class="card-img-top" alt="{{receta?.nombre}}" width="100%">
+    </div>
+    <div class="receta-content">
+        <h2>{{receta?.nombre}}</h2>
+        <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit 
+        quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, 
+        omnis dolor repellendus. Maxime placeat facere possimus, omnis voluptas assumenda est, 
+        omnis dolor repellendus. Omnis voluptas assumenda est, omnis dolor repellendus.</p>
+    </div>
+    <div class="receta-boton">
+        <button type="button" class="btn btn-outline-primary btn-block" (click)="verReceta()">Ver receta</button>
+    </div>
 </div>
