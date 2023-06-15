@@ -1,1 +1,59 @@
-<p>receta works!</p>
+<div class="padre">
+    <div class="receta-detalle-card">
+        <div class="top-card">
+            <div class="top-card-img">
+                <img [src]="receta.urlImagen">
+            </div>
+            <div class="top-card-content">
+                <h1>{{receta.nombre}}</h1>
+                <div class="subtitulo">
+                    <div class="subtitulo-vote" *ngIf="isLogged">
+                        <button (click)="upvote()" [disabled]="selectedUp"><i class="fa-solid fa-circle-up" ></i></button>
+                        <p>{{receta.valoracion}} <i class="fa-regular fa-star"></i></p>
+                        <button (click)="downvote()" [disabled]="selectedDown"><i class="fa-solid fa-circle-down"></i></button>
+                    </div>
+                    <div class="subtitulo-vote" *ngIf="!isLogged">
+                        <p>{{receta.valoracion}} <i class="fa-regular fa-star"></i></p>
+                    </div>
+                    <div>
+                        <p>● {{receta.tipo}} <i class="fa-solid fa-plate-wheat"></i>
+                            ●  {{receta.origen}} <i class="fa-regular fa-flag"></i> 
+                            ● {{receta.duracion}} <i class="fa-regular fa-clock"></i> 
+                            ● {{receta.dificultad}} <i class="fa-solid fa-gauge-simple-high"></i> 
+                            ● {{receta.fecha| date}} <i class="fa-regular fa-calendar"></i> 
+                            ● {{receta.usuario!.username}} <i class="fa-regular fa-user"></i> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="down-card">
+            <div class="pasos-card">
+                <h3>Pasos a Seguir:</h3>
+                <p>{{receta.instrucciones}}</p>
+            </div>
+            <div class="card ingredientes-card">
+                <div class="card-header">
+                    Ingredientes:
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" *ngFor="let ingre of receta.ingredientes">{{ingre.cantidad}} {{ingre.unidadMedida}} de {{ingre.nombre}}</li>
+                </ul>
+            </div>
+            
+        </div>
+        <div class="actions-card" *ngIf="isAdmin || isCreadorReceta">
+            <button class="btn btn-secondary" (click)="recetaAEditar(receta.id!)" type="button"><i class="fa-solid fa-pencil"></i></button>
+            <button class="btn btn-danger" (click)="eliminarReceta(receta.id!)"><i class="fa-solid fa-trash-can"></i></button>
+        </div>
+    </div>
+    <div class="comentario-box">
+        <div *ngIf="isLogged">
+            <textarea [(ngModel)]="mensajeNuevo"></textarea>
+            <button (click)="addComentario()">Añadir Comentario</button>
+        </div>
+        <div *ngFor="let comentario of receta.comentarios">
+            {{comentario.mensaje}} {{comentario.usuario.username}} <button class="btn btn-danger" *ngIf="checkAuthor(comentario.usuario.username!)" (click)="eliminarComentario(comentario.id!)"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+    </div>
+</div>

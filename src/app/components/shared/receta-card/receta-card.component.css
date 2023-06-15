@@ -1,66 +1,40 @@
 .receta-card {
     background-color: var(--verde-tarjeta);
-    padding: 0;
     box-shadow: 0px 0px 15px 0px var(--negro);
-    display: flex;
-    flex-direction: column;
+    border: none;
+    max-width: 460px;
+    min-width: 341px;
+    min-height: 520px;
+    margin-bottom: 20px;
 }
 
-.receta-card:hover > .receta-img, .receta-card:hover > .receta-content{
+.img-card{
+    width: 100%;
+    max-width: 460px;
+}
+
+.receta-card:hover > .img-card, .receta-card:hover > .card-body, .receta-card:hover > .card-footer{
     opacity: 0.6;
 }
 
 .receta-boton {
-    width: 40%;
     display: none;
 }
 
 .receta-card:hover>.receta-boton {
     display: block;
     position: absolute;
+    top: 40%;
+    left: 37%;
     color: var(--blanco);
-}
-
-.receta-boton i {
-    padding: 0;
-    margin: 0;
 }
 
 .receta-boton button {
-    margin-top: 10%;
-    margin-left: 50%;
     color: var(--negro);
+    background-color: var(--blanco-fondo);
+    border: none;
 }
 
-.receta-img {
-    flex: 1 1 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-}
-
-.receta-img img {
-    margin: 0;
-    padding: 0;
-    max-width: 350px;
-}
-
-.receta-content {
-    margin: 0;
-    padding: 0;
-    flex: 1 1 50%;
-    color: var(--blanco);
-}
-
-.receta-content h2 {
-    font-weight: 600;
-}
-
-.receta-content p {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: 0;
+p, h2, small{
+    color: var(--negro);
 }

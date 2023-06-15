@@ -10,6 +10,7 @@ import { RecetaService, Receta } from 'src/app/services/receta.service';
 })
 export class RecetasComponent implements OnInit{
   recetas:Receta[]=[];
+  pagina!:number;
 
   constructor(private _recetaService:RecetaService, private _router:Router){}
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Receta, RecetaService } from 'src/app/services/receta.service';
 import { TokenService } from 'src/app/services/token.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class NavBarComponent implements OnInit {
   isAdmin: boolean=false;
   username:string|null ="";
 
-  constructor(private _router: Router, private _tokenService: TokenService){}
+  constructor(private _router: Router, private _tokenService: TokenService, private _recetaService: RecetaService){}
 
   ngOnInit() {
     if (this._tokenService.getToken()) {
@@ -48,12 +49,19 @@ export class NavBarComponent implements OnInit {
     }
   }
 
-  buscarReceta(nombreReceta:string){
-
+  buscarReceta(busqueda:string){
+    this._router.navigate(['/search',busqueda]);
   }
 
   recetaRamdom(){
-
+    let maxRec:number;
+    this._recetaService.getRecetas().subscribe(
+      (respuesta: Receta[]) => {
+        maxRec = respuesta.length;
+        let numR:number = Math.round(Math.random()*(maxRec-1)+1);
+        this._router.navigate(['/receta', numR]);
+      }
+    );
   }
 
   crearReceta(){

@@ -11,7 +11,6 @@
                 <form>
                     <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Buscar..." aria-label="Buscar" (keyup.enter)="buscarReceta(buscarTexto.value)" #buscarTexto>
                     <button class="btn" type="submit" (click)="buscarReceta(buscarTexto.value)">Buscar</button>
-                    <button class="btn"><i class="fa-solid fa-sliders"></i></button>
                 </form>
             </div>
             <div class="descarga">
@@ -19,13 +18,13 @@
                     <a><button class="btn" (click)="recetaRamdom()"><i class="fa-solid fa-shuffle"></i></button></a>
                     <a *ngIf="isLogged"><button class="btn" (click)="crearReceta()" style="min-width: 160px;"><i class="fa-solid fa-fire"></i> CREAR RECETA</button></a>
                     <div class="dropdown" *ngIf="isAdmin">
-                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" id="admin" aria-expanded="false">
                             <i class="fa-solid fa-screwdriver-wrench"></i> ADMIN
                         </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">RECETAS</a></li>
-                            <li><a class="dropdown-item" href="#">INGREDIENTES</a></li>
-                            <li><a class="dropdown-item" href="#">USUARIOS</a></li>
+                        <ul class="dropdown-menu" aria-labelledby="admin">
+                            <li><a class="dropdown-item" routerLink="/admin-recetas">RECETAS</a></li>
+                            <li><a class="dropdown-item" routerLink="/admin-ingredientes">INGREDIENTES</a></li>
+                            <li><a class="dropdown-item" routerLink="/admin-usuarios">USUARIOS</a></li>
                         </ul>
                     </div>
                     <div class="iconos">
@@ -40,10 +39,10 @@
                     </div>
                     <a *ngIf="!isLogged"><button routerLink="login" class="btn"><i class="fa-solid fa-right-to-bracket"></i> ENTRAR</button></a>
                     <div class="dropdown" *ngIf="isLogged">
-                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" id="user" aria-expanded="false">
                             <i class="fa-solid fa-circle-user"></i> {{username}}
                         </button>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" aria-labelledby="user">
                             <li><a class="dropdown-item" (click)="onLogOut()">Cerrar Sesión</a></li>
                         </ul>
                     </div>

@@ -34,7 +34,7 @@ export class IngredienteService {
 
 export interface Ingrediente{
   id?:number,
-  nombre:string,
-  tipo: string,
-  gluten: boolean
+  nombre?:string,
+  tipo?: string,
+  gluten?: boolean
 }

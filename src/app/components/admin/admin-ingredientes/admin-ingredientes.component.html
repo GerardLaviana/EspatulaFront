@@ -1,0 +1,119 @@
+<button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#ingredienteNewModal"><i class="fa-solid fa-plus"></i></button>
+<table class="table table-hover">
+    <thead>
+        <tr>
+          <th>ID</th>
+          <th>NOMBRE DEL INGREDIENTE</th>
+          <th>TIPO DEL INGREDIENTE</th>
+          <th>TIENE GLUTEN EL INGREDIENTE</th>
+          <th>ACCIONES</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ingrediente of ingredientes">
+          <td>{{ingrediente.id}}</td>
+          <td>{{ingrediente.nombre}}</td>
+          <td>{{ingrediente.tipo}}</td>
+          <td>{{ingrediente.gluten}}</td>
+          <td>
+            <button class="btn btn-secondary" (click)="buscarIngredienteAEditar(ingrediente.id!)" type="button" data-bs-toggle="modal" data-bs-target="#ingredienteModal"><i class="fa-solid fa-pencil"></i></button>
+            <button class="btn btn-danger" (click)="eliminarIngrediente(ingrediente.id!)"><i class="fa-solid fa-trash-can"></i></button>
+          </td>
+        </tr>
+      </tbody>
+</table>
+<div class="modal fade" id="ingredienteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ingredienteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Ingrediente</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form #fIngre="ngForm" (ngSubmit)="editarIngrediente(fIngre)">
+      <div class="modal-body">
+        
+          <div class="mb-3">
+            <label for="nombre-edit" class="col-form-label">Nombre:</label>
+            <input type="text" class="form-control" id="nombre-edit" name="nombre-edit" [(ngModel)]="ingredienteAEditar.nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="tipo-edit" class="col-form-label">Tipo:</label>
+            <select class="form-control" id="tipo-edit" name="tipo-edit" [(ngModel)]="ingredienteAEditar.tipo" required>
+                <option value="" disabled selected>--Selecciona un tipo de ingrediente--</option>
+                <option value="Vegetal">Vegetal</option>
+                <option value="Fruta">Fruta</option>
+                <option value="Carne">Carne</option>
+                <option value="Pescado">Pescado</option>
+                <option value="Lácteo">Lácteo</option>
+                <option value="Legumbres, granos y frutos secos">Legumbres, granos y frutos secos</option>
+                <option value="Especias y condimentos">Especias y condimentos</option>
+                <option value="Aceites y grasas">Aceites y grasas</option>
+                <option value="Harina y cereales">Harina y cereales</option>
+                <option value="Azúcares y endulzantes">Azúcares y endulzantes</option>
+                <option value="Salsas, sopas o bebida">Salsas, Sopas o Bebida</option>
+                <option value="Productos de origen animal">Productos de origen animal</option>
+                <option value="Otro">Otro...</option>
+                </select>
+          </div>
+          <div class="mb-3">
+            <label for="gluten-edit" class="col-form-label">Gluten:</label>
+            <input type="checkbox" class="form-check-input form-control" id="gluten-edit" name="gluten-edit" [(ngModel)]="ingredienteAEditar.gluten">
+          </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Actualizar Ingrediente</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="ingredienteNewModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ingredienteNewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Crear Ingrediente</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form #fIngreNew="ngForm" (ngSubmit)="saveIngrediente(fIngreNew)">
+        <div class="modal-body">
+          
+            <div class="mb-3">
+              <label for="nombre-new" class="col-form-label">Nombre:</label>
+              <input type="text" class="form-control" id="nombre-new" name="nombre-new" [(ngModel)]="ingredienteNew.nombre" required>
+            </div>
+            <div class="mb-3">
+              <label for="tipo-new" class="col-form-label">Tipo:</label>
+              <select class="form-control" id="tipo-new" name="tipo-new" [(ngModel)]="ingredienteNew.tipo" required>
+                <option value="" disabled selected>--Selecciona un tipo de ingrediente--</option>
+                <option value="Vegetal">Vegetal</option>
+                <option value="Fruta">Fruta</option>
+                <option value="Carne">Carne</option>
+                <option value="Pescado">Pescado</option>
+                <option value="Lácteo">Lácteo</option>
+                <option value="Legumbres, granos y frutos secos">Legumbres, granos y frutos secos</option>
+                <option value="Especias y condimentos">Especias y condimentos</option>
+                <option value="Aceites y grasas">Aceites y grasas</option>
+                <option value="Harina y cereales">Harina y cereales</option>
+                <option value="Azúcares y endulzantes">Azúcares y endulzantes</option>
+                <option value="Salsas, sopas o bebida">Salsas, Sopas o Bebida</option>
+                <option value="Productos de origen animal">Productos de origen animal</option>
+                <option value="Otro">Otro...</option>
+                </select>
+            </div>
+            <div class="mb-3">
+              <label for="gluten-new" class="col-form-label">Gluten:</label>
+              <input type="checkbox" class="form-check-input form-control" id="gluten-new" name="gluten-new" [(ngModel)]="ingredienteNew.gluten">
+            </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Crear Ingrediente</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>

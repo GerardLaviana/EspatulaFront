@@ -27,5 +27,6 @@
             </div>
             <h5 routerLink="/login">Si ya estás registrado, pincha aquí</h5>
         </form>
+        <div *ngIf="f.submitted && isRegistroFail" class="alert alert-danger">Error! {{errMsj}}</div>
     </div>
 </div>

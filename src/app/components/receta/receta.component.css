@@ -1,0 +1,59 @@
+
+.padre{
+    background-color: var(--blanco-fondo);
+    padding: 20px;
+}
+
+.receta-detalle-card{
+    background-color: var(--verde-fondo);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.top-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.top-card-img{
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.top-card-img img{
+    max-width: 90%;
+    border-radius: 10px;
+}
+
+.top-card-content{
+    text-align: center;
+    color: var(--negro)
+}
+
+.subtitulo{
+    display: flex;
+    align-items: center;
+}
+
+.subtitulo p{
+    margin: 0;
+}
+
+.down-card{
+    display: flex;
+}
+
+.pasos-card{
+    flex-basis: 75%;
+}
+
+.ingredientes-card{
+    flex-basis: 25%;
+}
+
+.comentario-box{
+    background-color: var(--blanco-fondo);
+}

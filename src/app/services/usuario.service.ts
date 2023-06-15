@@ -19,6 +19,10 @@ export class UsuarioService {
     return this._http.get<Usuario>(`${this.apiUsuarioUrl}/${id}`);
   }
 
+  getUsuarioByUsername(username: string):Observable<Usuario>{
+    return this._http.get<Usuario>(`${this.apiUsuarioUrl}/username/${username}`);
+  }
+
   createUsuario(nuevoUsuario: Usuario):Observable<Usuario>{
     return this._http.post<Usuario>(`${this.apiUsuarioUrl}/new`, nuevoUsuario);
   }
@@ -30,13 +34,17 @@ export class UsuarioService {
   putUsuario(id:number, updatedUsuario:Usuario):Observable<Usuario>{
     return this._http.put<Usuario>(`${this.apiUsuarioUrl}/update/${id}`, updatedUsuario);
   }
+
+  getRoles():Observable<Rol[]>{
+    return this._http.get<Rol[]>(`${this.apiUsuarioUrl}/getRoles`);
+  }
 }
 
 export interface Usuario{
   id?:number,
-  username:string,
-  password:string,
-  email:string,
+  username?:string,
+  password?:string,
+  email?:string,
   roles?: Rol[]
 }
 

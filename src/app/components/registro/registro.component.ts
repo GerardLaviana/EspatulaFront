@@ -17,6 +17,7 @@ export class RegistroComponent implements OnInit {
   password: string = "";
   errMsj: string = "";
   isLogged = false;
+  isRegistroFail = false;
   siteKey:string;
 
   constructor(
@@ -37,17 +38,11 @@ export class RegistroComponent implements OnInit {
     this.nuevoUsuario = new NuevoUsuario(this.nombreUsuario, this.email, this.password);
     this._authService.nuevo(this.nuevoUsuario).subscribe(
       data => {
-        /**this.toastr.success('Cuenta Creada', 'OK', {
-          timeOut: 3000, positionClass: 'toast-top-center'
-        });*/
-
         this._router.navigate(['/login']);
       },
       err => {
+        this.isRegistroFail = true;
         this.errMsj = err.error.mensaje;
-        /**this.toastr.error(this.errMsj, 'Fail', {
-          timeOut: 3000,  positionClass: 'toast-top-center',
-        });*/
         console.log(err.error.message);
       }
     );

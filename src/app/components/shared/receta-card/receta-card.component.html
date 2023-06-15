@@ -1,26 +1,14 @@
-<!--<div class="card h-100 animated fadeIn fast mb-2">
-    <img [src]="receta?.urlImagen" class="card-img-top" alt="{{receta?.nombre}}">
+<div class="card receta-card">
+    <img [src]="receta?.urlImagen" class="card-img-top img-card" alt="{{receta?.nombre}}">
     <div class="card-body">
-    <h5 class="card-title">{{receta?.nombre}}</h5>
-    <p class="card-text">{{receta?.dificultad}}</p>
+        <h2 class="card-title">{{receta?.nombre}}</h2>
+        <p class="card-text"><i class="fa-regular fa-clock"></i> {{receta?.duracion}} min. | <i class="fa-regular fa-flag"></i> {{receta?.origen}} | <i class="fa-solid fa-plate-wheat"></i> {{receta?.tipo}} | <i class="fa-regular fa-star"></i> {{receta?.valoracion}}</p>
+        <p class="card-text text-truncated">{{ (receta?.instrucciones!.length>150)? (receta?.instrucciones | slice:0:150)+'...':(receta?.instrucciones) }}</p>
     </div>
     <div class="card-footer">
-        <small class="text-muted">{{receta?.tipo}}</small>
-    </div>
-    <button type="button" class="btn btn-outline-primary btn-block" (click)="verReceta()">Ver receta</button>
-</div>-->
-<div class="receta-card">
-    <div class="receta-img">
-        <img [src]="receta?.urlImagen" class="card-img-top" alt="{{receta?.nombre}}" width="100%">
-    </div>
-    <div class="receta-content">
-        <h2>{{receta?.nombre}}</h2>
-        <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit 
-        quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, 
-        omnis dolor repellendus. Maxime placeat facere possimus, omnis voluptas assumenda est, 
-        omnis dolor repellendus. Omnis voluptas assumenda est, omnis dolor repellendus.</p>
+        <small><i class="fa-solid fa-gauge-simple-high"></i> {{receta?.dificultad}} | {{receta?.fecha | date}} <i class="fa-regular fa-calendar"></i> | <i class="fa-regular fa-user"></i> {{receta?.usuario?.username}}</small>
     </div>
     <div class="receta-boton">
-        <button type="button" class="btn btn-outline-primary btn-block" (click)="verReceta()">Ver receta</button>
+        <button type="button" class="btn btn-outline-primary btn-block" (click)="verReceta()"><i class="fa-solid fa-eye"></i> Ver receta</button>
     </div>
 </div>
