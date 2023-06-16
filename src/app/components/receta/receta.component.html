@@ -12,16 +12,15 @@
                         <p>{{receta.valoracion}} <i class="fa-regular fa-star"></i></p>
                         <button (click)="downvote()" [disabled]="selectedDown"><i class="fa-solid fa-circle-down"></i></button>
                     </div>
-                    <div class="subtitulo-vote" *ngIf="!isLogged">
-                        <p>{{receta.valoracion}} <i class="fa-regular fa-star"></i></p>
-                    </div>
                     <div>
-                        <p>● {{receta.tipo}} <i class="fa-solid fa-plate-wheat"></i>
+                        <p><span *ngIf="!isLogged">{{receta.valoracion}} <i class="fa-regular fa-star"></i></span> 
+                            ● {{receta.tipo}} <i class="fa-solid fa-plate-wheat"></i>
                             ●  {{receta.origen}} <i class="fa-regular fa-flag"></i> 
                             ● {{receta.duracion}} <i class="fa-regular fa-clock"></i> 
                             ● {{receta.dificultad}} <i class="fa-solid fa-gauge-simple-high"></i> 
                             ● {{receta.fecha| date}} <i class="fa-regular fa-calendar"></i> 
                             ● {{receta.usuario!.username}} <i class="fa-regular fa-user"></i> 
+                            <span *ngIf="isGluten">● <i class="fa-solid fa-wheat-awn-circle-exclamation"></i> Contiene Gluten</span>
                         </p>
                     </div>
                 </div>
@@ -30,30 +29,41 @@
         <div class="down-card">
             <div class="pasos-card">
                 <h3>Pasos a Seguir:</h3>
-                <p>{{receta.instrucciones}}</p>
+                <div>
+                    <p *ngFor="let paso of pasosFixed; let i = index"><span class="span-bold">Paso {{i+1}}:</span> {{paso}}.</p>
+                </div>
             </div>
             <div class="card ingredientes-card">
-                <div class="card-header">
+                <div class="card-header top-ingre">
                     Ingredientes:
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" *ngFor="let ingre of receta.ingredientes">{{ingre.cantidad}} {{ingre.unidadMedida}} de {{ingre.nombre}}</li>
+                <ul class="list-group list-group-flush ">
+                    <li class="list-group-item lista-ingre" *ngFor="let ingre of receta.ingredientes">{{ingre.cantidad}} {{ingre.unidadMedida}} de {{ingre.nombre}}</li>
                 </ul>
             </div>
             
         </div>
         <div class="actions-card" *ngIf="isAdmin || isCreadorReceta">
-            <button class="btn btn-secondary" (click)="recetaAEditar(receta.id!)" type="button"><i class="fa-solid fa-pencil"></i></button>
-            <button class="btn btn-danger" (click)="eliminarReceta(receta.id!)"><i class="fa-solid fa-trash-can"></i></button>
+            <button class="btn btn-secondary" (click)="recetaAEditar(receta.id!)" type="button">Editar <i class="fa-solid fa-pencil"></i></button>
+            <button class="btn btn-danger" (click)="eliminarReceta(receta.id!)">Borrar <i class="fa-solid fa-trash-can"></i></button>
         </div>
     </div>
     <div class="comentario-box">
-        <div *ngIf="isLogged">
-            <textarea [(ngModel)]="mensajeNuevo"></textarea>
-            <button (click)="addComentario()">Añadir Comentario</button>
+        <h3>Comentarios: </h3>
+        <div class="new-comen" *ngIf="isLogged">
+            <input placeholder="Añade un comentario..." [(ngModel)]="mensajeNuevo"/>
+            <button class="btn" (click)="addComentario()">Comentar</button>
         </div>
-        <div *ngFor="let comentario of receta.comentarios">
-            {{comentario.mensaje}} {{comentario.usuario.username}} <button class="btn btn-danger" *ngIf="checkAuthor(comentario.usuario.username!)" (click)="eliminarComentario(comentario.id!)"><i class="fa-solid fa-xmark"></i></button>
+        <div class="comen-card" *ngFor="let comentario of receta.comentarios">
+            <div class="usu-comen">
+                <p><i class="fa-solid fa-circle-user"></i></p>
+                <p>{{comentario.usuario.username}}</p>
+            </div>
+            <div class="content-comen"><p>{{comentario.mensaje}}</p></div>
+            <div class="btn-comen">
+                <button class="btn btn-danger" *ngIf="checkAuthor(comentario.usuario.username!)" (click)="eliminarComentario(comentario.id!)"><i class="fa-solid fa-xmark"></i></button>
+            </div>
         </div>
+        <h2 style="text-align: center;" *ngIf="receta.comentarios!.length ===0">Aún no hay comentarios</h2>
     </div>
 </div>

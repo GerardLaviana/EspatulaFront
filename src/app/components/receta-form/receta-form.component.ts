@@ -96,6 +96,10 @@ export class RecetaFormComponent implements OnInit {
     this.ingreConCantidadArray.splice(this.ingreConCantidadArray.indexOf(event), 1);
   }
 
+  goBack(): void {
+    this._router.navigateByUrl('../');
+  } 
+  
   guardarReceta(form: NgForm){
     if (form.valid && this.ingreConCantidadArray.length > 0 && this.imagenSubida) {
       this.recetaNew.ingredientes = this.ingreConCantidadArray;

@@ -5,7 +5,6 @@ import { CloudinaryService } from 'src/app/services/cloudinary.service';
 import { Ingrediente, IngredienteService } from 'src/app/services/ingrediente.service';
 import { IngredienteConCantidad, Receta, RecetaService } from 'src/app/services/receta.service';
 import { TokenService } from 'src/app/services/token.service';
-import { Usuario, UsuarioService } from 'src/app/services/usuario.service';
 import { Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -136,6 +135,10 @@ export class RecetaEditComponent {
   eliminarIngreConCantidad(event:any) {
     this.ingreConCantidadArray.splice(this.ingreConCantidadArray.indexOf(event), 1);
   }
+
+  goBack(): void {
+    this._router.navigateByUrl('../');
+  }  
 
   guardarReceta(form: NgForm){
     if (form.valid && this.ingreConCantidadArray.length > 0) {

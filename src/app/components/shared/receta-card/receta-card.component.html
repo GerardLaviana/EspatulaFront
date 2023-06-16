@@ -2,7 +2,7 @@
     <img [src]="receta?.urlImagen" class="card-img-top img-card" alt="{{receta?.nombre}}">
     <div class="card-body">
         <h2 class="card-title">{{receta?.nombre}}</h2>
-        <p class="card-text"><i class="fa-regular fa-clock"></i> {{receta?.duracion}} min. | <i class="fa-regular fa-flag"></i> {{receta?.origen}} | <i class="fa-solid fa-plate-wheat"></i> {{receta?.tipo}} | <i class="fa-regular fa-star"></i> {{receta?.valoracion}}</p>
+        <p class="card-text"><i class="fa-regular fa-clock"></i> {{receta?.duracion}} min. | <i class="fa-regular fa-flag"></i> {{receta?.origen}} | <i class="fa-solid fa-plate-wheat"></i> {{receta?.tipo}} | <i class="fa-regular fa-star"></i> {{receta?.valoracion}} <span *ngIf="isGluten">| <i class="fa-solid fa-wheat-awn-circle-exclamation"></i></span></p>
         <p class="card-text text-truncated">{{ (receta?.instrucciones!.length>150)? (receta?.instrucciones | slice:0:150)+'...':(receta?.instrucciones) }}</p>
     </div>
     <div class="card-footer">

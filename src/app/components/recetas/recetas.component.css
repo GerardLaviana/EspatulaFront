@@ -82,4 +82,12 @@
     .banner-text p{
         font-size: 18px;
     }
+
+    .recetas-card{
+      flex-direction: column;
+      justify-content: space-between;
+      margin: 5%;
+      align-content: center;
+      gap: 30px;
+    }
 }

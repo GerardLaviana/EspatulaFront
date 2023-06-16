@@ -1,27 +1,30 @@
-<button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#ingredienteNewModal"><i class="fa-solid fa-plus"></i></button>
-<table class="table table-hover">
-    <thead>
-        <tr>
-          <th>ID</th>
-          <th>NOMBRE DEL INGREDIENTE</th>
-          <th>TIPO DEL INGREDIENTE</th>
-          <th>TIENE GLUTEN EL INGREDIENTE</th>
-          <th>ACCIONES</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let ingrediente of ingredientes">
-          <td>{{ingrediente.id}}</td>
-          <td>{{ingrediente.nombre}}</td>
-          <td>{{ingrediente.tipo}}</td>
-          <td>{{ingrediente.gluten}}</td>
-          <td>
-            <button class="btn btn-secondary" (click)="buscarIngredienteAEditar(ingrediente.id!)" type="button" data-bs-toggle="modal" data-bs-target="#ingredienteModal"><i class="fa-solid fa-pencil"></i></button>
-            <button class="btn btn-danger" (click)="eliminarIngrediente(ingrediente.id!)"><i class="fa-solid fa-trash-can"></i></button>
-          </td>
-        </tr>
-      </tbody>
-</table>
+<div class="admin-table">
+   <button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#ingredienteNewModal">Añadir Ingrediente <i class="fa-solid fa-plus"></i></button>
+  <table class="table table-hover">
+      <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">NOMBRE DEL INGREDIENTE</th>
+            <th scope="col">TIPO DEL INGREDIENTE</th>
+            <th scope="col">TIENE GLUTEN EL INGREDIENTE</th>
+            <th scope="col">ACCIONES</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ingrediente of ingredientes">
+            <td>{{ingrediente.id}}</td>
+            <td>{{ingrediente.nombre}}</td>
+            <td>{{ingrediente.tipo}}</td>
+            <td>{{ingrediente.gluten}}</td>
+            <td class="actions-table">
+              <button class="btn btn-secondary" (click)="buscarIngredienteAEditar(ingrediente.id!)" type="button" data-bs-toggle="modal" data-bs-target="#ingredienteModal"><i class="fa-solid fa-pencil"></i></button>
+              <button class="btn btn-danger" (click)="eliminarIngrediente(ingrediente.id!)"><i class="fa-solid fa-trash-can"></i></button>
+            </td>
+          </tr>
+        </tbody>
+  </table>
+  <h1 *ngIf="ingredientes.length===0">No hay ingredientes que administrar</h1>
+</div>
 <div class="modal fade" id="ingredienteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ingredienteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">

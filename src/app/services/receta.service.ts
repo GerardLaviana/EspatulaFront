@@ -46,6 +46,15 @@ export class RecetaService {
     }
     return recetasAux;
   }
+
+  tieneGluten(receta: Receta):boolean{
+    for (let i = 0; i < receta.ingredientes!.length; i++) {
+      if (receta.ingredientes![i].ingrediente?.gluten === true) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
 
 export interface Receta{

@@ -15,12 +15,14 @@ export class RecetaComponent implements OnInit{
   newComen: ComentarioDTO = {};
   mensajeNuevo:string="";
   roles: string[]=[];
+  pasosFixed: string[]=[];
   isLogged = false;
   isAdmin: boolean = false;
   isCreadorReceta: boolean = false;
   isCreadorComentario: boolean = false;
   selectedUp: boolean = false;
   selectedDown: boolean = false;
+  isGluten:boolean=false;
 
   constructor(private _tokenService: TokenService, private _activatedRoute: ActivatedRoute, private _router: Router,
     private _receService:RecetaService, private _comenService:ComentarioService){}
@@ -30,10 +32,14 @@ export class RecetaComponent implements OnInit{
       this._receService.getReceta(params['id']).subscribe(
         (respuesta)=>{
           this.receta = respuesta;
+          this.pasosFixed = this.receta.instrucciones!.split(".");
+          this.isGluten = this._receService.tieneGluten(this.receta!);
+          console.log(this.isGluten);
           if(this._tokenService.getUserName()===respuesta.usuario?.username)
             this.isCreadorReceta=true;
           console.log(respuesta);
           console.log(this.isCreadorReceta);
+          console.log(this.pasosFixed);
         });
     });
     
@@ -49,6 +55,7 @@ export class RecetaComponent implements OnInit{
         this.isAdmin=true;
       }
     });
+
   }
 
   upvote(){

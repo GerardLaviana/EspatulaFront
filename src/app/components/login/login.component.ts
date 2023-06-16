@@ -14,10 +14,11 @@ export class LoginComponent implements OnInit {
   siteKey:string;
   isLogged = false;
   isLoginFail = false;
+  isBanned = false;
   loginUsuario: LoginUsuario | undefined;
   username: string = "";
   password: string = "";
-  roles: string[] = [];
+  roles: any[] = [];
   errMsj: string = "";
 
   constructor(
@@ -48,7 +49,16 @@ export class LoginComponent implements OnInit {
         this._tokenService.setUserName(data.username);
         this._tokenService.setAuthorities(data.authorities);
         this.roles = data.authorities;
-        window.location.reload();
+        console.log(this.roles)
+        for (let i = 0; i < this.roles.length; i++) {
+          if(this.roles[i].authority === "ROLE_BAN"){
+            console.log("baneado")
+            this.onUserBanned();
+          }else{
+            window.location.reload();
+          };
+        }
+        
       },
       err => {
         this.isLogged = false;
@@ -66,5 +76,11 @@ export class LoginComponent implements OnInit {
     }else{
         respuesta!.style.display="block";
     }
+  }
+
+  onUserBanned(): void {
+    this.isLogged = false;
+    this.isBanned=true;
+    this._tokenService.logOut();
   }
 }
