@@ -24,6 +24,7 @@ export class RecetaEditComponent {
   ingreCantidad:number=0;
   ingreMedida:string="";
   ingreVacio:boolean=false;
+  imagenSubida:boolean=false;
 
   constructor(private _cloudinaryService:CloudinaryService, private _tokenService:TokenService, private _activatedRoute:ActivatedRoute, private _router:Router, private _http:HttpClient,
   private _ingreService: IngredienteService, private _receService: RecetaService){
@@ -105,6 +106,7 @@ export class RecetaEditComponent {
       .then(response => response.json())
       .then(data => {
           this.recetaEdit.urlImagen = data.secure_url;
+          this.imagenSubida=true;
           console.log(data.secure_url)
         });
     }else{
@@ -141,7 +143,7 @@ export class RecetaEditComponent {
   }  
 
   guardarReceta(form: NgForm){
-    if (form.valid && this.ingreConCantidadArray.length > 0) {
+    if (form.valid && this.ingreConCantidadArray.length > 0 && this.imagenSubida) {
       this.recetaEdit.ingredientes = this.ingreConCantidadArray;
       this._receService.putReceta(this.id, this.recetaEdit).subscribe(
         (response)=>{
